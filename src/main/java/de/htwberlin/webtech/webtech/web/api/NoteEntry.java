@@ -1,11 +1,5 @@
 package de.htwberlin.webtech.webtech.web.api;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Objects;
-import lombok.Getter;
-import lombok.Setter;
-
 public class NoteEntry {
 
 

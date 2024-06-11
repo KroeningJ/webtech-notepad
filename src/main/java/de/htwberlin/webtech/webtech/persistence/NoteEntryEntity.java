@@ -1,10 +1,14 @@
 package de.htwberlin.webtech.webtech.persistence;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 
-
+@AllArgsConstructor
 @Entity(name = "Notes")
 public class NoteEntryEntity {
 

@@ -2,6 +2,7 @@ package de.htwberlin.webtech.webtech.service;
 
 import de.htwberlin.webtech.webtech.web.api.NoteEntryCreateRequest;
 import de.htwberlin.webtech.webtech.web.api.NoteEntry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import de.htwberlin.webtech.webtech.persistence.NoteEntryEntity;
 import de.htwberlin.webtech.webtech.persistence.NoteRepository;
@@ -11,11 +12,12 @@ import java.util.stream.Collectors;
 @Service
 public class NoteEntryService {
 
-    private final NoteRepository noteRepository;
+    @Autowired
+    private NoteRepository noteRepository;
 
-    public NoteEntryService(NoteRepository noteRepository) {
-        this.noteRepository = noteRepository;
-    }
+    // public NoteEntryService(NoteRepository noteRepository) {
+      //  this.noteRepository = noteRepository;
+    // }
 
     public List<NoteEntry> findAll() {
 
