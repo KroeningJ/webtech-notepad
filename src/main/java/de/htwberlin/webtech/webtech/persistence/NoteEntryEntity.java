@@ -1,13 +1,16 @@
 package de.htwberlin.webtech.webtech.persistence;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Notes")
 public class NoteEntryEntity {
@@ -29,37 +32,5 @@ public class NoteEntryEntity {
         this.ldt = ldt;
         this.entry = entry;
         this.colour = colour;
-    }
-
-    public NoteEntryEntity() {
-
-    }
-
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getLdt() {
-        return ldt;
-    }
-
-    public void setLdt(String ldt) {
-        this.ldt = ldt;
-    }
-
-    public String getEntry() {
-        return entry;
-    }
-
-    public void setEntry(String entry) {
-        this.entry = entry;
     }
 }

@@ -12,18 +12,24 @@ import java.util.stream.Collectors;
 @Service
 public class NoteEntryService {
 
-    @Autowired
-    private NoteRepository noteRepository;
+    private final NoteRepository noteRepository;
 
-    // public NoteEntryService(NoteRepository noteRepository) {
-      //  this.noteRepository = noteRepository;
-    // }
+     public NoteEntryService(NoteRepository noteRepository) {
+         this.noteRepository = noteRepository;
+     }
+
 
     public List<NoteEntry> findAll() {
 
         List<NoteEntryEntity> notes = noteRepository.findAll();
-
-        return notes.stream().map(this::transformEntity)
+        return notes.stream()
+                //.map(this::transformEntity)
+                .map(noteEntryEntity -> new NoteEntry(
+                        noteEntryEntity.getId(),
+                        noteEntryEntity.getLdt(),
+                        noteEntryEntity.getEntry(),
+                        noteEntryEntity.getColour()
+                ))
                 .collect(Collectors.toList());
     }
 

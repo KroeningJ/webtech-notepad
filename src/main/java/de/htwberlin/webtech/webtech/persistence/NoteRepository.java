@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NoteRepository extends JpaRepository<NoteEntryEntity, Long> {
 
-    // List<NoteEntryEntity> findAllById(Long id);
+    //List<NoteEntryEntity> findAllById(Long id);
 
 }

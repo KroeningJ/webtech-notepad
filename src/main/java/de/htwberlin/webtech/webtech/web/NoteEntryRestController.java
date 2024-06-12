@@ -1,5 +1,6 @@
 package de.htwberlin.webtech.webtech.web;
 
+import de.htwberlin.webtech.webtech.persistence.NoteRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import de.htwberlin.webtech.webtech.web.api.NoteEntry;
@@ -21,10 +22,12 @@ public class NoteEntryRestController {
         this.noteEntryService = noteEntryService;
     }
 
+
     @GetMapping(path = "/api/v1/notes")
     public ResponseEntity<List<NoteEntry>> listNotes() {
         return ResponseEntity.ok(noteEntryService.findAll());
     }
+
 
     @GetMapping(path = "/api/v1/notes/{id}")
     public ResponseEntity<NoteEntry> findNoteById(@PathVariable Long id) {
