@@ -24,13 +24,13 @@ public class NoteEntryRestController {
 
     // Alle Notizen anzeigen
     @GetMapping(path = "/api/v1/notes")
-    public ResponseEntity<List<NoteEntry>> listNotes() {
+    public ResponseEntity<List<NoteEntry>> fetchNotes() {
         return ResponseEntity.ok(noteEntryService.findAll());
     }
 
     // Notiz nach ID suchen
     @GetMapping(path = "/api/v1/notes/{id}")
-    public ResponseEntity<NoteEntry> findNoteById(@PathVariable Long id) {
+    public ResponseEntity<NoteEntry> fetchNoteById(@PathVariable Long id) {
         var noteEntry = noteEntryService.findById(id);
         return noteEntry != null ? ResponseEntity.ok(noteEntry) : ResponseEntity.notFound().build();
     }

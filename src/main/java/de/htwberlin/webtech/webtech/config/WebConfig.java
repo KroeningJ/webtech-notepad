@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedMethods("*")
                 .allowedOrigins(
-                        "http://localhost:8080",
+                        "http://localhost:3000",
                         "https://webtech-frontend-0186.onrender.com/")
                 .allowedMethods("*")
                 .allowedHeaders("*")
