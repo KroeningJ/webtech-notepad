@@ -22,38 +22,39 @@ public class NoteEntryRestController {
         this.noteEntryService = noteEntryService;
     }
 
-
+    // Alle Notizen anzeigen
     @GetMapping(path = "/api/v1/notes")
     public ResponseEntity<List<NoteEntry>> listNotes() {
         return ResponseEntity.ok(noteEntryService.findAll());
     }
 
-
+    // Notiz nach ID suchen
     @GetMapping(path = "/api/v1/notes/{id}")
     public ResponseEntity<NoteEntry> findNoteById(@PathVariable Long id) {
         var noteEntry = noteEntryService.findById(id);
         return noteEntry != null ? ResponseEntity.ok(noteEntry) : ResponseEntity.notFound().build();
     }
 
+    // Notiz nach ID aktualisieren
     @PutMapping(path = "/api/v1/notes/{id}")
-    public ResponseEntity<NoteEntry> updateNoteById(@PathVariable Long id, @RequestBody NoteEntryCreateRequest request) {
+    public ResponseEntity<NoteEntry> updateNoteEntry(@PathVariable Long id, @RequestBody NoteEntryCreateRequest request) {
         var noteEntry = noteEntryService.updateNoteEntry(id, request);
         return noteEntry != null ? ResponseEntity.ok(noteEntry) : ResponseEntity.notFound().build();
     }
 
+    // Notiz nach ID löschen
     @DeleteMapping(path = "/api/v1/notes/{id}")
     public ResponseEntity<Void> deleteNoteEntry(@PathVariable Long id) {
         boolean successful = noteEntryService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
+    // Notizen erstellen
     @PostMapping(path = "/api/v1/notes")
     public ResponseEntity<Void> createNoteEntry(@RequestBody NoteEntryCreateRequest request) throws URISyntaxException {
         var noteEntry = noteEntryService.create(request);
         URI uri = new URI("/api/v1/notes/" + noteEntry.getId());
         return ResponseEntity.created(uri).build();
     }
-
-
 
 }

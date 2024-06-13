@@ -28,11 +28,11 @@ public class NoteEntryService {
     }
 
     public NoteEntry findById(Long id){
-
         var noteEntryEntity = noteRepository.findById(id);
-
-        return noteEntryEntity.isPresent()? transformEntity(noteEntryEntity.get()) : null;
+        return noteEntryEntity.map(this::transformEntity).orElse(null);
+        //return noteEntryEntity.isPresent()? transformEntity(noteEntryEntity.get()) : null;
     }
+
 
     public NoteEntry updateNoteEntry(Long id, NoteEntryCreateRequest request){
         var noteEntryEntityOptional = noteRepository.findById(id);
@@ -45,13 +45,12 @@ public class NoteEntryService {
 
         noteEntryEntity.setLdt(request.getLdt());
         noteEntryEntity.setEntry(request.getEntry());
-        noteEntryEntity.setColour(request.getEntry());
+        noteEntryEntity.setColour(request.getColour());
 
         noteEntryEntity= noteRepository.save(noteEntryEntity);
 
         return transformEntity(noteEntryEntity);
     }
-
 
 
     public NoteEntry create(NoteEntryCreateRequest request) {
@@ -71,10 +70,6 @@ public class NoteEntryService {
         noteRepository.deleteById(id);
         return true;
     }
-
-
-
-
 
 
     public NoteEntry transformEntity(NoteEntryEntity noteEntryEntity) {
