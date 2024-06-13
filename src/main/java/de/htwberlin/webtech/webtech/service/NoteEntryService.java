@@ -23,13 +23,7 @@ public class NoteEntryService {
 
         List<NoteEntryEntity> notes = noteRepository.findAll();
         return notes.stream()
-                //.map(this::transformEntity)
-                .map(noteEntryEntity -> new NoteEntry(
-                        noteEntryEntity.getId(),
-                        noteEntryEntity.getLdt(),
-                        noteEntryEntity.getEntry(),
-                        noteEntryEntity.getColour()
-                ))
+                .map(this::transformEntity)
                 .collect(Collectors.toList());
     }
 
@@ -58,12 +52,15 @@ public class NoteEntryService {
         return transformEntity(noteEntryEntity);
     }
 
-    public NoteEntry create(NoteEntryCreateRequest request) {
 
+
+    public NoteEntry create(NoteEntryCreateRequest request) {
         var noteEntryEntity = new NoteEntryEntity(request.getLdt(), request.getEntry(), request.getColour());
-        noteRepository.save(noteEntryEntity);
+        noteEntryEntity = noteRepository.save(noteEntryEntity);
         return transformEntity(noteEntryEntity);
     }
+
+
 
     public boolean deleteById (Long id) {
         if (!noteRepository.existsById(id)){
@@ -75,12 +72,17 @@ public class NoteEntryService {
         return true;
     }
 
-    public NoteEntry transformEntity(NoteEntryEntity entity) {
+
+
+
+
+
+    public NoteEntry transformEntity(NoteEntryEntity noteEntryEntity) {
         return new NoteEntry(
-                entity.getId(),
-                entity.getLdt(),
-                entity.getEntry(),
-                entity.getColour()
+                noteEntryEntity.getId(),
+                noteEntryEntity.getLdt(),
+                noteEntryEntity.getEntry(),
+                noteEntryEntity.getColour()
         );
     }
 }

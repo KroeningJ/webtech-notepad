@@ -53,4 +53,7 @@ public class NoteEntryRestController {
         URI uri = new URI("/api/v1/notes/" + noteEntry.getId());
         return ResponseEntity.created(uri).build();
     }
+
+
+
 }
