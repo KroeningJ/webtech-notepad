@@ -1,6 +1,7 @@
 package de.htwberlin.webtech.webtech.web;
 
 import de.htwberlin.webtech.webtech.persistence.NoteRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import de.htwberlin.webtech.webtech.web.api.NoteEntry;
@@ -51,7 +52,7 @@ public class NoteEntryRestController {
 
     // Notizen erstellen
     @PostMapping(path = "/api/v1/notes")
-    public ResponseEntity<Void> createNoteEntry(@RequestBody NoteEntryCreateRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createNoteEntry(@Valid @RequestBody NoteEntryCreateRequest request) throws URISyntaxException {
         var noteEntry = noteEntryService.create(request);
         URI uri = new URI("/api/v1/notes/" + noteEntry.getId());
         return ResponseEntity.created(uri).build();
